@@ -50,9 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $results = $conn->query($sql);
         $todo_lists = $results->fetchAll(PDO::FETCH_ASSOC);
         ?>
-        <ul>
+        <ul class="task-list">
             <?php foreach($todo_lists as $todo_list):?>
-                <li><?=$todo_list['task']?></li>
+                <li class="list-group-item"><?=$todo_list['task']?></li>
+                <a href="delete.php?id=<?=$todo_list['id']?>">
+                    <button type="button" class="btn btn-danger"> Удалить </button>
+                </a>
             <?php endforeach;?>
         </ul>
     </div>
