@@ -26,18 +26,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список задач</title>
-    <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
-    <div class="container">
+    <div class="list-container">
         <h1>Порешаем задачи</h1>
         <?php if(!empty($error)){
             $error = 'Нужно внести задачу';
             echo $error;
         }?>
-        <form action="" method="post">
+        <form class="list-form" action="" method="post">
             <input type="text" name="task" id="task" placeholder="Что поделаем?" class="form-control">
             <button type="submit" name="addTask" class="btn  btn-success">Добавить</button>
         </form>
@@ -50,12 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $results = $conn->query($sql);
         $todo_lists = $results->fetchAll(PDO::FETCH_ASSOC);
         ?>
-        <ul class="task-list">
+        <ul class="list-group">
             <?php foreach($todo_lists as $todo_list):?>
-                <li class="list-group-item"><?=$todo_list['task']?></li>
-                <a href="delete.php?id=<?=$todo_list['id']?>">
-                    <button type="button" class="btn btn-danger"> Удалить </button>
-                </a>
+                <div class="task-list_wrapper">
+                    <li class="list-group-item"><?=$todo_list['task']?></li>
+                    <a href="delete.php?id=<?=$todo_list['id']?>">
+                        <button type="button" class="btn btn-danger"> Удалить </button>
+                    </a>
+                </div>
             <?php endforeach;?>
         </ul>
     </div>
