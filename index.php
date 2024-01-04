@@ -29,10 +29,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="css/style.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"> </script>
 </head>
 <body>
     <div class="list-container">
-        <h1>Порешаем задачи</h1>
+        <div class="clock">
+        <div class="clock-wrapper">
+                <div id="date"></div>
+                <div id="day"></div>
+            </div>
+            <div id="timestamp"></div>
+            <?php require 'welcome.php';?>
+        </div>
+    <script>
+        $(document).ready (function(){
+            const day = "<?php echo date('d/m/y');?>";
+            const date = "<?php echo date ('l');?>";
+            // const timestamp = "<?php echo time();?>"
+            const timestamp = setInterval(function(){$("#timestamp").load("time.php")}, 1000);
+
+            // const time = new Date(timestamp * 1000);
+            // const hours = time.getHours();
+            // const minutes = time.getMinutes();
+            // const seconds = time.getSeconds();
+
+
+            $("#day").text(day);
+            $("#date").text(date);
+            $("#timestamp").text(timestamp);
+
+            // function startTimer(){
+            //     seconds + 1;
+
+            //     if (seconds = 60){
+            //         minutes + 1;
+            //         seconds = 0;
+            //     }
+
+            //     if (minutes = 60){
+            //         hours + 1;
+            //         minutes = 0;
+            //         seconds = 0;
+            //     }
+
+            //     $("#timestamp").text(hours + ":" + minutes + ":" + seconds);
+            // }
+
+            // setInterval(startTimer, 1000);
+
+        })
+        </script>
+        <!-- <h1>Порешаем задачи</h1> -->
         <?php if(!empty($error)){
             $error = 'Нужно внести задачу';
             echo $error;
