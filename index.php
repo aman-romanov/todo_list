@@ -18,6 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         header('Location:add.php');
     }
 }
+
+$kzdate = new IntlDateFormatter(
+    'ru_RU', 
+    IntlDateFormatter::FULL,
+    IntlDateFormatter::FULL,
+    'Asia/Almaty',
+    IntlDateFormatter::GREGORIAN,
+    'EEEE'
+);
+
+$date = new DateTime();
+
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Список задач</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"> </script>
 </head>
@@ -43,8 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
     <script>
         $(document).ready (function(){
-            const day = "<?php echo date('d/m/y');?>";
-            const date = "<?php echo date ('l');?>";
+            const day = "<?=date('d/m/Y');?>";
+            const date = "<?= $kzdate->format($date);?>";
             // const timestamp = "<?php echo time();?>"
             const timestamp = setInterval(function(){$("#timestamp").load("time.php")}, 1000);
 
@@ -86,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }?>
         <form class="list-form" action="" method="post">
             <input type="text" name="task" id="task" placeholder="Что поделаем?" class="form-control">
-            <button type="submit" name="addTask" class="btn  btn-success">Добавить</button>
+            <button type="submit" name="addTask" class="btn  btn-success"><span class="icon-chevron-left-solid-2"></span></button>
         </form>
         <?php
         $db = new Database;
@@ -100,9 +113,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         <ul class="list-group">
             <?php foreach($todo_lists as $todo_list):?>
                 <div class="task-list_wrapper">
-                    <li class="list-group-item"><?=$todo_list['task']?></li>
+                    <li class="task-list-item"><?=$todo_list['task']?></li>
                     <a href="delete.php?id=<?=$todo_list['id']?>">
-                        <button type="button" class="btn btn-danger"> Удалить </button>
+                        <span class="icon-circle-xmark-regular"></span>
                     </a>
                 </div>
             <?php endforeach;?>

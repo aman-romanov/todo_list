@@ -1,15 +1,23 @@
 <?php
 
 $dt = new DateTime("now", new DateTimeZone('Asia/Almaty')); 
-$time = $dt->format('h:i:s');
+$time = $dt->format('H');
 
-if($time >= "05:00:00" && $time >= "11:00:00"){
-    echo "<div class='welcome'> Доброе утро! </div>";
-} elseif($time >= "11:00:00" && $time <= "16:00:00"){
-    echo "<div class='welcome'>Доброе день! </div>";
-}elseif($time >= "16:00:00" && $time <= "22:00:00"){
-    echo "<div class='welcome'>Доброе вечер! </div>";
-}else{
-    echo "<div class='welcome'> Время отдыхать</div>";
+switch($time){
+    case $time > 20:
+        echo "<div class='welcome'> Доброй ночи!</div>";
+    break;
+    case $time > 16:
+        echo "<div class='welcome'> Добрый вечер!</div>";
+    break;
+    case $time > 12:
+        echo "<div class='welcome'> Добрый день!</div>";
+    break;
+    case $time > 6:
+        echo "<div class='welcome'> Доброе утро!</div>";
+    break;
+    default:
+        echo "<div class='welcome'> Время отдыхать</div>";
+    break;
 }
 ?>
