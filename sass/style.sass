@@ -1,11 +1,28 @@
 body
-    background: url(../img/bg_1.jpg) center (center/cover) no-repeat
+    position: relative
+    background: url(../img/bg_6.jpg) center (center/cover) no-repeat
     min-height: 500px
+
+.bg-slideshow
+    li.bg-slides
+        opacity: 0
+        list-style: none
+        img.bg-img
+            position: absolute
+            z-index: -1
+            width: 100%
+            height: 800px
+            top: -126px
+            right: 0
+    li.bg-slides-active
+        opacity: 1
+        list-style: none
 
 #timestamp
     font-size: 100px
     text-align: center
     line-height: 90px
+
 #date, #day
     font-size: 15px
     margin: 0px 58px

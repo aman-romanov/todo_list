@@ -45,6 +45,15 @@ $date = new DateTime();
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"> </script>
 </head>
 <body>
+    <!-- <ul class="bg-slideshow">
+        <li class="bg-slides bg-slides-active"><img src="img/bg_1.jpg" alt="" class="bg-img"></li>
+        <li class="bg-slides"><img src="img/bg_2.jpg" alt="" class="bg-img"></li>
+        <li class="bg-slides"><img src="img/bg_3.jpg" alt="" class="bg-img"></li>
+        <li class="bg-slides"><img src="img/bg_4.jpg" alt="" class="bg-img"></li>
+        <li class="bg-slides"><img src="img/bg_5.jpg" alt="" class="bg-img"></li>
+        <li class="bg-slides"><img src="img/bg_6.jpg" alt="" class="bg-img"></li>
+        <li class="bg-slides"><img src="img/bg_7.jpg" alt="" class="bg-img"></li>
+    </ul> -->
     <div class="list-container">
         <div class="clock">
         <div class="clock-wrapper">
@@ -121,5 +130,25 @@ $date = new DateTime();
             <?php endforeach;?>
         </ul>
     </div>
+
+    <script>
+        function changeBg(){
+            const img = [
+                'url("img/bg_1.jpg")',
+                'url("img/bg_2.jpg")',
+                'url("img/bg_3.jpg")',
+                'url("img/bg_4.jpg")',
+                'url("img/bg_5.jpg")',
+                'url("img/bg_6.jpg")',
+                'url("img/bg_7.jpg")'
+            ];
+
+            const slide = document.querySelector('body');
+            const bg = img[Math.floor(Math.random()*img.length)];
+            document.querySelector('body').style.backgroundImage=bg;
+        }
+
+        setInterval(changeBg(), 3000);
+    </script>
 </body>
 </html>
