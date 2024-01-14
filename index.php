@@ -129,6 +129,7 @@ $date = new DateTime();
                 </div>
             <?php endforeach;?>
         </ul>
+        <div class="bw_bg"></div>
     </div>
 
     <script>
@@ -136,11 +137,8 @@ $date = new DateTime();
             const img = [
                 'url("img/bg_1.jpg")',
                 'url("img/bg_2.jpg")',
-                'url("img/bg_3.jpg")',
-                'url("img/bg_4.jpg")',
                 'url("img/bg_5.jpg")',
                 'url("img/bg_6.jpg")',
-                'url("img/bg_7.jpg")'
             ];
 
             const slide = document.querySelector('body');
